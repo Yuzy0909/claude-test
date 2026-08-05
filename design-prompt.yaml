@@ -1,0 +1,306 @@
+# ============================================================
+# design-prompt.yaml
+# 抽象デザインシステム — 流用可能な汎用テンプレート
+#
+# 抽出元の精神:
+#   - ダークテック系ポートフォリオサイト（高密度・洗練）
+#   - NJPW公式サイト（高コントラスト・力強さ・全幅エネルギー）
+# ============================================================
+
+meta:
+  name: "Dark Power Design System"
+  version: "1.0.0"
+  description: >
+    「力強さ」と「洗練」を両立させるダークテーマのデザイン言語。
+    スポーツ・エンタメ・テック・クリエイターサイトに転用可能。
+    派手すぎず、しかし存在感がある。そういう空気感を目指す。
+
+# ─────────────────────────────────────────────
+# 1. ATMOSPHERE（空気感・世界観）
+# ─────────────────────────────────────────────
+atmosphere:
+  mood:
+    - "強さ（powerful）"
+    - "静かな自信（quiet confidence）"
+    - "プロフェッショナル（professional）"
+    - "エッジが効いている（edgy but not aggressive）"
+  visual_metaphors:
+    - "深夜のアリーナ — ライトに照らされたステージだけが輝く"
+    - "鍛造された金属 — 表面は暗く、エッジだけが光る"
+    - "IMAX映像 — 暗い劇場の中で画面が全てを支配する"
+  keywords:
+    ja: ["力強さ", "緊張感", "没入感", "本物感", "矜持"]
+    en: ["bold", "immersive", "authoritative", "cinematic", "raw"]
+
+# ─────────────────────────────────────────────
+# 2. COLOR（カラーシステム）
+# ─────────────────────────────────────────────
+color:
+  philosophy: >
+    背景は限りなく黒に近い。アクセントは1色のみ、熱を持った暖色系。
+    グレーのグラデーションで奥行きを作り、アクセント色が「灯台」として機能する。
+    3色以上のアクセントは使わない。
+
+  roles:
+    base:       # ページ全体の背景
+      value: "#0a0a0a〜#141420"
+      note: "純黒より少し暖かみ or 青みを持たせる。完全な#000000は避ける"
+
+    surface:    # カード・パネルの背景
+      value: "#1a1a2e〜#1e1e30"
+      note: "baseより5〜10%明るい。僅かに青紫を帯びると奥行きが出る"
+
+    border:     # 境界線・区切り
+      value: "#2a2a3e〜#333350"
+      note: "主張しない。存在を感じさせるが目立たない"
+
+    accent:     # ★メインアクセント（1色のみ）
+      value: "#cc0000〜#e8853a の暖色帯"
+      note: >
+        赤〜オレンジの間で用途に合わせて選択。
+        スポーツ・格闘系 → 赤寄り (#cc0000, #e00)。
+        テック・クリエイター系 → オレンジ寄り (#e8853a, #f0a050)。
+        エネルギーと熱量を象徴する1色を選ぶ。
+
+    accent_dim: # アクセントの透過版（バッジ・ホバー背景用）
+      value: "accent color at 10〜20% opacity"
+      note: "背景色として使う。テキストはaccentフルカラーで"
+
+    text_primary:   "#e8e8e8〜#ffffff"
+    text_secondary: "#888888〜#aaaaaa"
+    text_on_accent: "#ffffff"
+
+  forbidden:
+    - "中間色の単色背景（白・ライトグレー）"
+    - "パステルカラー全般"
+    - "2色以上のアクセント色"
+    - "虹グラデーション"
+
+# ─────────────────────────────────────────────
+# 3. TYPOGRAPHY（タイポグラフィ）
+# ─────────────────────────────────────────────
+typography:
+  philosophy: >
+    太さと大きさで階層を作る。装飾ではなく重量感で語る。
+    ラベル・カテゴリは大文字（uppercase）+ 広めのletter-spacing で「ラベル感」を出す。
+    本文は読みやすさ最優先。
+
+  scale:
+    display:    # ヒーローの大見出し
+      size: "clamp(2rem, 5vw, 4rem)"
+      weight: 800
+      line_height: 1.1〜1.2
+      transform: "normal / 強調語のみ accent color"
+
+    heading:    # セクションタイトル
+      size: "clamp(1.5rem, 3vw, 2.4rem)"
+      weight: 700
+      line_height: 1.3
+
+    label:      # セクションラベル（上部のスモールキャップ）
+      size: "0.7〜0.8rem"
+      weight: 600
+      transform: "uppercase"
+      letter_spacing: "0.12〜0.18em"
+      color: "accent"
+
+    body:
+      size: "1rem"
+      weight: 400
+      line_height: 1.7〜1.9
+      color: "text_secondary"
+
+    tag:        # バッジ・タグ
+      size: "0.7〜0.75rem"
+      weight: 600
+      transform: "uppercase or normal"
+
+  font_stack:
+    japanese: "'Noto Sans JP', 'Hiragino Kaku Gothic ProN', system-ui, sans-serif"
+    english:  "'Inter', 'Segoe UI', system-ui, sans-serif"
+    note: "condensed / impact 系フォントはスポーツ寄りに振りたい場合のみ追加"
+
+# ─────────────────────────────────────────────
+# 4. SPACING & LAYOUT（余白・レイアウト）
+# ─────────────────────────────────────────────
+layout:
+  philosophy: >
+    横幅は思い切って使う。コンテンツをぎゅうぎゅうに詰めるのではなく、
+    「選ばれた要素」が広いキャンバスに配置されている印象。
+    余白は空虚ではなく「間（ま）」として機能させる。
+
+  max_width: "1100〜1200px"
+  section_padding:
+    vertical: "80〜120px"
+    horizontal: "48px（モバイルは24px）"
+
+  grid:
+    gallery: "repeat(auto-fill, minmax(280〜320px, 1fr))"
+    skills:  "repeat(auto-fill, minmax(150〜180px, 1fr))"
+    gap: "16〜24px"
+
+  hero:
+    min_height: "100vh"
+    alignment: "center center"
+    background: "radial-gradient（中心に向かって surface color が滲む）"
+
+# ─────────────────────────────────────────────
+# 5. COMPONENTS（コンポーネント設計指針）
+# ─────────────────────────────────────────────
+components:
+  card:
+    background: "surface color"
+    border: "1px solid border color"
+    border_radius: "8〜16px"
+    hover:
+      transform: "translateY(-4px)"
+      box_shadow: "0 12〜24px 40px rgba(0,0,0,0.4〜0.5)"
+      transition: "200〜250ms ease"
+    note: "ホバーで『浮く』感覚。クリック可能であることを物理的に示す"
+
+  badge:
+    shape: "pill（border-radius: 999px）"
+    style: "背景は accent_dim、テキストは accent フルカラー、細いボーダー"
+    size: "0.7rem / padding 2〜4px 10〜14px"
+    note: "カテゴリ分類や難易度表示に使用。色でセマンティクスを与える"
+
+  button_primary:
+    background: "accent"
+    color: "white"
+    border_radius: "6〜8px"
+    padding: "10〜14px 28〜36px"
+    font_weight: 600
+    hover: "accent 10〜15% 明るく + わずかに上方向に移動"
+
+  button_ghost:
+    background: "transparent"
+    border: "1px solid border color"
+    color: "text_secondary"
+    hover: "border-color → accent、color → text_primary"
+
+  nav:
+    position: "fixed top"
+    background: "base color at 80〜90% opacity + backdrop-filter: blur(12px)"
+    border_bottom: "1px solid border color"
+    height: "56〜64px"
+    note: "スクロールしても追従。すりガラス効果で下のコンテンツを透かす"
+
+  divider:
+    style: "border-top: 1px solid border color"
+    note: "hrタグで実装。セクション間の区切りに使用。装飾は最小限"
+
+  filter_bar:
+    style: "pill型ボタン群、横並び"
+    active: "accent背景 + 白テキスト"
+    inactive: "border color の枠線 + text_secondary"
+
+  section_header:
+    structure: |
+      [label] ← uppercase、accent color、小さい
+      [title] ← 大きく太く
+      [subtitle] ← text_secondary、body size
+    note: "この3層構造をセクション冒頭で繰り返す。リズムを生む"
+
+# ─────────────────────────────────────────────
+# 6. IMAGERY & MEDIA（画像・メディア指針）
+# ─────────────────────────────────────────────
+imagery:
+  hero_image:
+    style: "全幅（full-bleed）、暗めのオーバーレイ推奨"
+    ratio: "16:9 〜 21:9（シネマスコープ寄りで映画的に）"
+    treatment: "彩度を落とす or コントラストを上げる。明るすぎると浮く"
+
+  thumbnail:
+    ratio: "16:9"
+    background_fallback: "surface color + ローダーアニメーション"
+    note: "画像がない場合もaspect-ratioを維持してレイアウト崩れを防ぐ"
+
+  icon:
+    style: "絵文字 or シンプルなSVGアイコン。線画系より面（fill）系"
+    size: "1.6〜2rem（カード内）"
+
+# ─────────────────────────────────────────────
+# 7. MOTION（動き・アニメーション）
+# ─────────────────────────────────────────────
+motion:
+  philosophy: >
+    動きは「補助」。派手なアニメーションは使わない。
+    ユーザーの操作への応答として、控えめに、しかし確実に反応する。
+
+  duration:
+    micro: "100〜150ms"  # ホバー色変化
+    standard: "200〜250ms"  # カードのリフト、ボタン変化
+    page: "300〜400ms"  # ページ遷移、モーダル
+
+  easing:
+    default: "ease"
+    enter:  "ease-out"
+    exit:   "ease-in"
+
+  patterns:
+    hover_lift: "translateY(-3〜5px) + box-shadow 増加"
+    fade_in:    "opacity 0→1、transform translateY(8px)→0"
+    color_shift: "color / border-color / background のみ変化"
+
+  forbidden:
+    - "rotate / skew 系の過激な変形"
+    - "1秒以上のアニメーション（フィードバックとして遅すぎる）"
+    - "無限ループするアニメーション（prefers-reduced-motion未対応は禁止）"
+
+# ─────────────────────────────────────────────
+# 8. CONTRAST STRATEGY（コントラスト戦略）
+# ─────────────────────────────────────────────
+contrast:
+  philosophy: >
+    NJPWスタイルから学ぶ: 暗い背景の上で「1点だけ」を輝かせる。
+    全てを目立たせようとすると何も目立たなくなる。
+    アクセントカラーを使う箇所を意図的に絞る。
+
+  accent_usage:
+    - "セクションラベル（uppercase小テキスト）"
+    - "CTA ボタン"
+    - "バッジの文字色"
+    - "見出し内の強調語（1〜2語のみ）"
+    - "ホバー時のボーダー色変化"
+  accent_forbidden:
+    - "本文テキスト全体"
+    - "背景色（accent_dim は可）"
+    - "アイコン全部"
+
+  wcag_target: "AA以上（通常テキストはコントラスト比4.5:1以上）"
+
+# ─────────────────────────────────────────────
+# 9. RESPONSIVE（レスポンシブ方針）
+# ─────────────────────────────────────────────
+responsive:
+  breakpoints:
+    mobile:  "〜 767px"
+    tablet:  "768px 〜 1023px"
+    desktop: "1024px 〜"
+
+  adjustments:
+    mobile:
+      - "section_padding.horizontal → 16〜24px"
+      - "nav: ハンバーガーメニュー化"
+      - "hero h1: clamp の下限値に従い自動縮小"
+      - "gallery grid: 1列"
+      - "skills grid: 2列"
+
+# ─────────────────────────────────────────────
+# 10. ANTI-PATTERNS（やってはいけないこと）
+# ─────────────────────────────────────────────
+anti_patterns:
+  - name: "ライト基調への逃げ"
+    desc: "このシステムはダークテーマが前提。白背景に転換するとアイデンティティが失われる"
+
+  - name: "アクセント色の多用"
+    desc: "オレンジや赤が画面の30%以上を占めると安っぽくなる。全体の5〜10%に留める"
+
+  - name: "装飾的ボーダー / シャドウの乱用"
+    desc: "border-radius を多段重ねしたり、box-shadow を複数層かけると重くなる"
+
+  - name: "均一なフォントサイズ"
+    desc: "全てのテキストが同じサイズだと階層が消える。display〜tagの4段階は守る"
+
+  - name: "コンテンツ詰め込み"
+    desc: "NJPWは情報密度が高いが、このシステムでは余白を削りすぎない。section_paddingを維持する"
